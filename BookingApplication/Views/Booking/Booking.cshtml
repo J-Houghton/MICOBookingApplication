@@ -1,0 +1,16 @@
+﻿<!-- This will be the default view for the "Booking" action. This page will redirect to the correct version depending on the device -->
+@{
+    ViewBag.Title = "Booking";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        if (window.innerWidth <= 300) {
+            window.location.href = "@Url.Action("_MobileBooking", "Booking")"; // Correct action and controller
+        } else {
+            window.location.href = "@Url.Action("_DesktopBooking", "Booking")"; // Correct action and controller
+        }
+    });
+</script>

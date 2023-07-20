@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Path to your layout page
+}
+@model BookingApplication.Models.BookingModel.BookingBrowseModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @* Include necessary CSS and JavaScript files *@
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    @{ int dayCount = 0; }
+    <div class="container">
+        <h1>Booking</h1>
+        <div class="row">
+            <div class="col-10 col-lg-12 col-md-12 col-sm-12">
+                <div class="row">
+                    @foreach (var dayOfWeek in Model.DaysOfWeek)
+                    {
+                        <div class="col">
+                            <h4 class="text-center">@dayOfWeek</h4>
+                        </div>
+                    }
+                </div>
+                @for (int i = 0; i < 6; i++) // Assuming maximum 6 rows are needed for a month
+                {
+                    <div class="row">
+                        @for (int j = 0; j < 7; j++) // 7 days of a week
+                        {
+                            if (dayCount < Model.Days.Count && Model.Days[dayCount].Date.DayOfWeek == (DayOfWeek)j)
+                            {
+                                <div class="col d-flex justify-content-center">
+                                    <div class="circle d-flex justify-content-center align-items-center"
+                                         onclick="displayHours('@dayCount')">
+                                        <h4>@Model.Days[dayCount].Date.Day</h4>
+                                    </div>
+                                </div>
+                                dayCount++;
+                            }
+                            else
+                            {
+                                <div class="col">
+
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-lg-2">
+                //need to fix hours not showing up on the right, might be col class set up above, also need mobile page
+                @for (int i = 0; i < Model.Days.Count; i++)
+                {
+                    <div id="hoursDisplay_@i" class="d-none">
+                        @foreach (var hour in Model.Days[i].Hours)
+                        {
+                            if (hour.IsAvailable)
+                            {
+                                <div class="time-box d-flex justify-content-center align-items-center">
+                                    <p class="m-0">@hour.Time.ToString(@"hh\:mm") - @hour.Time.ToString(@"hh"):45</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function displayHours(dayIndex) {
+            // Hide all hoursDisplay divs
+            $('[id^="hoursDisplay_"]').addClass('d-none');
+
+            // Show the selected one
+            $("#hoursDisplay_" + dayIndex).removeClass('d-none');
+        }
+    </script>
+
+</body>
+</html>
+
+<style type="text/css">
+    .circle {
+        width: 70px;
+        height: 70px;
+        background-color: #a8a8a8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .time-box {
+        width: 250px;
+        height: 70px;
+        background-color: #007bff;
+        Bootstrap primary color color: #fff;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+</style>
