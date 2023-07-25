@@ -12,14 +12,15 @@ namespace BookingApplication.Controllers
         // GET: Booking
         public ActionResult Booking()
         {
-            if (Request.Browser.IsMobileDevice)
-            {
-                return RedirectToAction("_MobileBooking");
-            }
-            else
-            {
-                return RedirectToAction("_DesktopBooking");
-            }
+            /* if (Request.Browser.IsMobileDevice)
+             {
+                 return RedirectToAction("_MobileBooking");
+             }
+             else
+             {
+                 return RedirectToAction("_DesktopBooking");
+             }*/
+            return View();
         }
 
         public ActionResult _DesktopBooking()
@@ -30,7 +31,14 @@ namespace BookingApplication.Controllers
 
         public ActionResult _MobileBooking()
         {
-            // Your logic
+            BookingModel.BookingBrowseModel bookingModel = BookingModel.GetJuly2023Dates();
+            return View(bookingModel);
+        }
+
+        public ActionResult ContactPaymentInfo(DateTime date, TimeSpan time)
+        {
+            ViewBag.Date = date.ToShortDateString();
+            ViewBag.Time = time.ToString();
             return View();
         }
     }

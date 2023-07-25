@@ -183,6 +183,7 @@
     <Content Include="Views\Booking\Booking.cshtml" />
     <Content Include="Views\Booking\_DesktopBooking.cshtml" />
     <Content Include="Views\Booking\_MobileBooking.cshtml" />
+    <Content Include="Views\Booking\ContactPaymentInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

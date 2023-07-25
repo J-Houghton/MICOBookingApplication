@@ -16,7 +16,7 @@
     <div class="container">
         <h1>Booking</h1>
         <div class="row">
-            <div class="col-10 col-lg-12 col-md-12 col-sm-12">
+            <div class="col-10">
                 <div class="row">
                     @foreach (var dayOfWeek in Model.DaysOfWeek)
                     {
@@ -51,7 +51,6 @@
                 }
             </div>
             <div class="col-lg-2">
-                //need to fix hours not showing up on the right, might be col class set up above, also need mobile page
                 @for (int i = 0; i < Model.Days.Count; i++)
                 {
                     <div id="hoursDisplay_@i" class="d-none">
@@ -59,9 +58,15 @@
                         {
                             if (hour.IsAvailable)
                             {
-                                <div class="time-box d-flex justify-content-center align-items-center">
+                                @*<div class="time-box d-flex justify-content-center align-items-center">
                                     <p class="m-0">@hour.Time.ToString(@"hh\:mm") - @hour.Time.ToString(@"hh"):45</p>
-                                </div>
+                                </div>*@
+                                <a href='@Url.Action("ContactPaymentInfo", "Booking", new { date = Model.Days[i].Date, time = hour.Time })'>
+                                    <div class="time-box d-flex justify-content-center align-items-center">
+                                        <p class="m-0" style="color: white">@hour.Time.ToString(@"hh\:mm") - @hour.Time.ToString(@"hh"):45</p>
+                                    </div>
+                                </a>
+
                             }
                         }
                     </div>
@@ -104,5 +109,8 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 10px;
+    }
+    .circle, .time-box {
+        cursor: pointer;
     }
 </style>

@@ -7,7 +7,7 @@
 
 <script>
     $(document).ready(function () {
-        if (window.innerWidth <= 300) {
+        if (window.innerWidth <= 700) {
             window.location.href = "@Url.Action("_MobileBooking", "Booking")"; // Correct action and controller
         } else {
             window.location.href = "@Url.Action("_DesktopBooking", "Booking")"; // Correct action and controller

@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ContactPaymentInfo</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Date: @ViewBag.Date</h4>
+            <h4>Time: @ViewBag.Time</h4>
+            <h4>Please fill in your personal and payment information:</h4>
+
+            <form>
+                <!-- Your form elements go here. For example: -->
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="card">Credit Card Number:</label>
+                    <input type="text" class="form-control" id="card" placeholder="Enter credit card number">
+                </div>
+                <!-- More form elements... -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
