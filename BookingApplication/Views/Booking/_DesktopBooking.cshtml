@@ -12,6 +12,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
     @{ int dayCount = 0; }
     <div class="container">
         <h1>Booking</h1>
@@ -59,8 +65,8 @@
                             if (hour.IsAvailable)
                             {
                                 @*<div class="time-box d-flex justify-content-center align-items-center">
-                                    <p class="m-0">@hour.Time.ToString(@"hh\:mm") - @hour.Time.ToString(@"hh"):45</p>
-                                </div>*@
+                                        <p class="m-0">@hour.Time.ToString(@"hh\:mm") - @hour.Time.ToString(@"hh"):45</p>
+                                    </div>*@
                                 <a href='@Url.Action("ContactPaymentInfo", "Booking", new { date = Model.Days[i].Date, time = hour.Time })'>
                                     <div class="time-box d-flex justify-content-center align-items-center">
                                         <p class="m-0" style="color: white">@hour.Time.ToString(@"hh\:mm") - @hour.Time.ToString(@"hh"):45</p>

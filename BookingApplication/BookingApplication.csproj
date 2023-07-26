@@ -184,6 +184,7 @@
     <Content Include="Views\Booking\_DesktopBooking.cshtml" />
     <Content Include="Views\Booking\_MobileBooking.cshtml" />
     <Content Include="Views\Booking\ContactPaymentInfo.cshtml" />
+    <Content Include="Views\Booking\AdminBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

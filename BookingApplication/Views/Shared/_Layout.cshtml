@@ -39,3 +39,35 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        var input = "";
+        var password = "asd";
+        var timer;
+
+        $(document).keydown(function (e) {
+            clearTimeout(timer);
+
+            input += String.fromCharCode(e.which).toLowerCase();
+
+            if (input.length > password.length) {
+                input = input.substr((input.length - password.length));
+            }
+
+            if (input === password) {
+                // display link when password is input
+                var adminLink = $('<a>', {
+                    text: 'Admin Booking',
+                    href: '/Booking/AdminBooking', // replace this with the link to your admin booking page
+                    class: 'admin-link'
+                });
+
+                $('body').append(adminLink);
+            }
+
+            timer = setTimeout(function () {
+                input = '';
+            }, 10000); // 10 seconds reset timer
+        });
+    });
+</script>

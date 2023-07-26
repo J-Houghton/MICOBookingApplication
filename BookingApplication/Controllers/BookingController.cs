@@ -12,14 +12,6 @@ namespace BookingApplication.Controllers
         // GET: Booking
         public ActionResult Booking()
         {
-            /* if (Request.Browser.IsMobileDevice)
-             {
-                 return RedirectToAction("_MobileBooking");
-             }
-             else
-             {
-                 return RedirectToAction("_DesktopBooking");
-             }*/
             return View();
         }
 
@@ -40,6 +32,19 @@ namespace BookingApplication.Controllers
             ViewBag.Date = date.ToShortDateString();
             ViewBag.Time = time.ToString();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult BookDate(DateTime date, TimeSpan time)
+        {
+            BookingModel.BookDate(date, time);
+            TempData["Success"] = "Your booking has been successfully created!";
+            return RedirectToAction("Booking");
+        }
+        public ActionResult AdminBooking()
+        {
+            BookingModel.BookingBrowseModel bookingModel = BookingModel.GetJuly2023Dates();
+            return View(bookingModel.Days);
         }
     }
 }
